@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Polygon Self Staked POL",
+    "strategy": {
+      "name": "polygon-self-staked-pol",
+      "params": {
+        "stakeManagerAddress": "0x5e3Ef299fDDf15eAa0432E6e66473ace8c13D908",
+        "decimals": 18,
+        "subGraphURL": "https://api.thegraph.com/subgraphs/..."
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x1234567890123456789012345678901234567890",
+      "0x0987654321098765432109876543210987654321"
+    ],
+    "snapshot": 12345678
+  }
+]
