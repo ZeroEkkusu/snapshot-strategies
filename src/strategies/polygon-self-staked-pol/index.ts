@@ -3,9 +3,8 @@ import { formatUnits } from '@ethersproject/units';
 import { getAddress } from '@ethersproject/address';
 import { Multicaller } from '../../utils';
 import { customFetch } from '../../utils';
-import fs from 'fs'; // debugging
 
-export const author = 'ZeroEkkusu';
+export const author = '0xPolygon';
 export const version = '0.1.0';
 
 const stakeManagerABI = [
@@ -39,30 +38,7 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  //const delegators = await fetchDelegatorsFromApi(network);
-  fetchDelegatorsFromApi(network); // suppress warnings with dummy data (return [])
-  const delegators: IDelegator[] = [
-    {
-      bondedValidator: 148,
-      address: '0x1fb4374f670d6c151335d915dbaa2c3ed7d8a254'
-    },
-    {
-      bondedValidator: 72,
-      address: '0x08998f1d3c9edb7da7ca99ca4f3c4118d761f5c1'
-    },
-    {
-      bondedValidator: 72,
-      address: '0xe7e02afeb25f1ae16a3caa872845f937cf314466'
-    },
-    {
-      bondedValidator: 94,
-      address: '0xdeeddf2d1bcb7c73046f6eac5d719e991c6b1982'
-    },
-    {
-      bondedValidator: 91,
-      address: '0xdeeddf2d1bcb7c73046f6eac5d719e991c6b1982'
-    }
-  ];
+  const delegators = await fetchDelegatorsFromApi(network);
 
   const multi = new Multicaller(network, provider, stakeManagerABI, {
     blockTag
@@ -144,14 +120,10 @@ export async function strategy(
     ])
   );
 
-  // debug
-  fs.writeFileSync('./result.txt', JSON.stringify(scores, null, 2), 'utf-8');
-
   return scores;
 }
 
 async function fetchDelegatorsFromApi(network: string) {
-  return [];
   const base = STAKING_API[parseInt(network)];
   if (!base) throw new Error(`Invalid network ${network}`);
   const delegators: IDelegator[] = [],
@@ -175,7 +147,6 @@ async function fetchDelegatorsFromApi(network: string) {
     }
   }
   return delegators.map(({ address, ...rest }) => ({
-    //address: address.toLowerCase(), // sanity
     address: getAddress(address),
     ...rest
   }));
