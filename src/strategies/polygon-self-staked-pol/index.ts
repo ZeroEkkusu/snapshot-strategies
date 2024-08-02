@@ -53,6 +53,14 @@ export async function strategy(
     {
       bondedValidator: 72,
       address: '0xe7e02afeb25f1ae16a3caa872845f937cf314466'
+    },
+    {
+      bondedValidator: 94,
+      address: '0xdeeddf2d1bcb7c73046f6eac5d719e991c6b1982'
+    },
+    {
+      bondedValidator: 91,
+      address: '0xdeeddf2d1bcb7c73046f6eac5d719e991c6b1982'
     }
   ];
 
@@ -122,14 +130,10 @@ export async function strategy(
 
   const stakes = await stakesMulti.execute();
 
-  for (const { address } of delegators) {
-    for (let i = 1; i <= validatorCount; i++) {
-      const key = `${address}_${i}`;
-      if (stakes[key]) {
-        votingPower[address] = (votingPower[address] || BigNumber.from(0)).add(
-          stakes[key][0]
-        );
-      }
+  for (const { address, bondedValidator } of delegators) {
+    const key = `${address}_${bondedValidator}`;
+    if (stakes[key]) {
+      votingPower[address] = votingPower[address].add(stakes[key][0]);
     }
   }
 
