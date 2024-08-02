@@ -17,11 +17,6 @@
           "type": "number",
           "title": "Decimals",
           "examples": [18]
-        },
-        "subGraphURL": {
-          "type": "string",
-          "title": "SubGraph URL",
-          "format": "uri"
         }
       },
       "required": ["stakeManagerAddress", "decimals"],

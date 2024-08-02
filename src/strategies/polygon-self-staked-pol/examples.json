@@ -5,14 +5,14 @@
       "name": "polygon-self-staked-pol",
       "params": {
         "stakeManagerAddress": "0x5e3Ef299fDDf15eAa0432E6e66473ace8c13D908",
-        "decimals": 18,
-        "subGraphURL": "https://api.thegraph.com/subgraphs/..."
+        "decimals": 18
       }
     },
     "network": "1",
     "addresses": [
-      "0x1234567890123456789012345678901234567890",
-      "0x0987654321098765432109876543210987654321"
+      "0x1fb4374f670d6c151335d915dbaa2c3ed7d8a254",
+      "0x08998f1d3c9edb7da7ca99ca4f3c4118d761f5c1",
+      "0xe7e02afeb25f1ae16a3caa872845f937cf314466"
     ],
     "snapshot": 12345678
   }
